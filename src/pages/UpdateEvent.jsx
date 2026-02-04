@@ -126,10 +126,10 @@ const UpdateEvent = () => {
   return (
     <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
       <Paper elevation={3} sx={{ p: 4 }}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
+        <Typography variant="h4" fontWeight="bold" gutterBottom color="#DA627D">
           Update Event
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
+        <Typography variant="body2" color="#f22e59" sx={{ mb: 4 }}>
           Edit the event details below
         </Typography>
 
@@ -328,7 +328,8 @@ const UpdateEvent = () => {
                   />
                 </Box>
               )}
-              <Button variant="outlined" component="label" fullWidth>
+              <Button variant="outlined" component="label" fullWidth                   sx={{color:"#A53860", borderColor:"#A53860"}}
+>
                 {formData.banner_image
                   ? "Change Banner Image"
                   : "Upload New Banner Image"}
@@ -357,11 +358,7 @@ const UpdateEvent = () => {
                   disabled={loading}
                   sx={{
                     background:
-                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                    "&:hover": {
-                      background:
-                        "linear-gradient(135deg, #5568d3 0%, #6a3d91 100%)",
-                    },
+                      "#A53860"
                   }}
                 >
                   {loading ? "Updating..." : "Update Event"}
@@ -370,6 +367,7 @@ const UpdateEvent = () => {
                   variant="outlined"
                   onClick={() => navigate(`/events/${id}`)}
                   disabled={loading}
+                  sx={{color:"#A53860", borderColor:"#A53860"}}
                 >
                   Cancel
                 </Button>

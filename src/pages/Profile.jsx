@@ -72,8 +72,7 @@ const Profile = () => {
             variant="contained"
             onClick={fetchProfile}
             sx={{
-              backgroundColor: "#1976d2",
-              "&:hover": { backgroundColor: "#1565c0" },
+              backgroundColor: "#A53860",
             }}
           >
             Try Again

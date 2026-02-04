@@ -91,6 +91,8 @@ export const eventAPI = {
       headers: { "Content-Type": "multipart/form-data" },
     }),
 
+  getEventRecommendations:(userInterests,availableEvents)=>api.post('/events/recommendations/',{userInterests,availableEvents}),
+
   deleteEvent: (id) => api.delete(`events/${id}/delete/`),
 
   getMyEvents: () => api.get("events/my-events/"),

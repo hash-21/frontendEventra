@@ -303,7 +303,7 @@ const MyRegistrations = () => {
                 {!registration.checked_in && (
                   <Button
                     fullWidth
-                    sx={{ color: "#A53860", borderColor: "#A53860" }}
+                    sx={{ backgroundColor: "#A53860" }}
                     variant="contained"
                     size="small"
                     onClick={() => handleOpenCheckIn(registration)}
@@ -341,7 +341,6 @@ const MyRegistrations = () => {
         <DialogContent sx={{ pt: 2 }}>
           {qrCode && (
             <Box>
-              {/* QR Code Display */}
               {qrCode.qr_code && (
                 <Box sx={{ mb: 3, textAlign: "center" }}>
                   <Typography
@@ -360,8 +359,7 @@ const MyRegistrations = () => {
                 </Box>
               )}
 
-              {/* Registration Code Input */}
-              <TextField
+             <TextField
                 fullWidth
                 label="Registration Code"
                 value={qrCode.registration_code}

@@ -275,11 +275,7 @@ const CreateEvent = () => {
                   disabled={loading}
                   sx={{
                     background:
-                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                    "&:hover": {
-                      background:
-                        "linear-gradient(135deg, #5568d3 0%, #6a3d91 100%)",
-                    },
+                      "#A53860"
                   }}
                 >
                   {loading ? "Creating..." : "Create Event"}

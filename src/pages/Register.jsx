@@ -62,7 +62,7 @@ const Register = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        background: "#F9DBBD",
         px: 2,
         py: 4,
       }}
@@ -78,7 +78,7 @@ const Register = () => {
       >
         <Box
           sx={{
-            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            background: "#DA627D",
             py: 3,
             px: 2,
             color: "white",
@@ -94,14 +94,7 @@ const Register = () => {
         </Box>
 
         <Box sx={{ p: 4 }}>
-          <Typography
-            variant="h5"
-            align="center"
-            mb={3}
-            sx={{ fontWeight: 600, color: "#333" }}
-          >
-            Get Started
-          </Typography>
+  
 
           {error && (
             <Alert severity="error" sx={{ mb: 3, borderRadius: 2 }}>
@@ -111,60 +104,86 @@ const Register = () => {
 
           <Box component="form" onSubmit={handleSubmit}>
             <Grid container spacing={2.5}>
-              {/* First Name */}
               <Grid size={{ xs: 12, sm: 6 }}>
                 <FormControl fullWidth required>
-                  <InputLabel>First Name</InputLabel>
+                  <InputLabel
+                    sx={{
+                      "&.Mui-focused": {
+                        color: "#ff939a",
+                      },
+                    }}
+                  >
+                    First Name
+                  </InputLabel>
                   <OutlinedInput
                     label="First Name"
                     name="first_name"
                     value={formData.first_name}
                     onChange={handleChange}
                     sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: 2,
-                        transition: "all 0.3s ease",
-                        "&:hover fieldset": {
-                          borderColor: "#667eea",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "#667eea",
-                        },
+                      borderRadius: 2,
+                      "& fieldset": {
+                        borderColor: "#ff939a",
+                      },
+
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                      },
+
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                        borderWidth: "2px",
                       },
                     }}
                   />
                 </FormControl>
               </Grid>
 
-              {/* Last Name */}
               <Grid size={{ xs: 12, sm: 6 }}>
                 <FormControl fullWidth required>
-                  <InputLabel>Last Name</InputLabel>
+                  <InputLabel
+                    sx={{
+                      "&.Mui-focused": {
+                        color: "#ff939a",
+                      },
+                    }}
+                  >
+                    Last Name
+                  </InputLabel>
                   <OutlinedInput
                     label="Last Name"
                     name="last_name"
                     value={formData.last_name}
                     onChange={handleChange}
                     sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: 2,
-                        transition: "all 0.3s ease",
-                        "&:hover fieldset": {
-                          borderColor: "#667eea",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "#667eea",
-                        },
+                      borderRadius: 2,
+                      "& fieldset": {
+                        borderColor: "#ff939a",
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                      },
+
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                        borderWidth: "2px",
                       },
                     }}
                   />
                 </FormControl>
               </Grid>
 
-              {/* Email */}
               <Grid size={{ xs: 12 }}>
                 <FormControl fullWidth required>
-                  <InputLabel>Email</InputLabel>
+                  <InputLabel
+                    sx={{
+                      "&.Mui-focused": {
+                        color: "#ff939a",
+                      },
+                    }}
+                  >
+                    Email
+                  </InputLabel>
                   <OutlinedInput
                     label="Email"
                     type="email"
@@ -172,25 +191,36 @@ const Register = () => {
                     value={formData.email}
                     onChange={handleChange}
                     sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: 2,
-                        transition: "all 0.3s ease",
-                        "&:hover fieldset": {
-                          borderColor: "#667eea",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "#667eea",
-                        },
+                      borderRadius: 2,
+                      "& fieldset": {
+                        borderColor: "#ff939a", // default
+                      },
+                      // hover
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                      },
+
+                      // focus
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                        borderWidth: "2px",
                       },
                     }}
                   />
                 </FormControl>
               </Grid>
 
-              {/* Role */}
               <Grid size={{ xs: 12 }}>
                 <FormControl fullWidth>
-                  <InputLabel>Role</InputLabel>
+                  <InputLabel
+                    sx={{
+                      "&.Mui-focused": {
+                        color: "#ff939a",
+                      },
+                    }}
+                  >
+                    Role
+                  </InputLabel>
                   <Select
                     label="Role"
                     name="role"
@@ -198,14 +228,18 @@ const Register = () => {
                     onChange={handleChange}
                     sx={{
                       borderRadius: 2,
-                      "& .MuiOutlinedInput-root": {
-                        transition: "all 0.3s ease",
-                        "&:hover fieldset": {
-                          borderColor: "#667eea",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "#667eea",
-                        },
+                      "& fieldset": {
+                        borderColor: "#ff939a",
+                      },
+                      // hover
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                      },
+
+                      // focus
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                        borderWidth: "2px",
                       },
                     }}
                   >
@@ -219,22 +253,34 @@ const Register = () => {
               {/* Interests */}
               <Grid size={{ xs: 12 }}>
                 <FormControl fullWidth>
-                  <InputLabel>Interests</InputLabel>
+                  <InputLabel
+                    sx={{
+                      "&.Mui-focused": {
+                        color: "#ff939a",
+                      },
+                    }}
+                  >
+                    Interests
+                  </InputLabel>
                   <OutlinedInput
                     label="Interests"
                     name="interests"
                     value={formData.interests}
                     onChange={handleChange}
                     sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: 2,
-                        transition: "all 0.3s ease",
-                        "&:hover fieldset": {
-                          borderColor: "#667eea",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "#667eea",
-                        },
+                      borderRadius: 2,
+                      "& fieldset": {
+                        borderColor: "#ff939a",
+                      },
+                      // hover
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                      },
+
+                      // focus
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                        borderWidth: "2px",
                       },
                     }}
                   />
@@ -245,7 +291,10 @@ const Register = () => {
               {/* Password */}
               <Grid size={{ xs: 12 }}>
                 <FormControl fullWidth required>
-                  <InputLabel>Password</InputLabel>
+                  <InputLabel sx={{    "&.Mui-focused": {
+      color: "#ff939a",
+    },
+}}>Password</InputLabel>
                   <OutlinedInput
                     label="Password"
                     type="password"
@@ -253,22 +302,23 @@ const Register = () => {
                     value={formData.password}
                     onChange={handleChange}
                     sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: 2,
-                        transition: "all 0.3s ease",
-                        "&:hover fieldset": {
-                          borderColor: "#667eea",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "#667eea",
-                        },
+                      borderRadius: 2,
+                      "& fieldset": {
+                        borderColor: "#ff939a",
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                      },
+
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                        borderWidth: "2px",
                       },
                     }}
                   />
                 </FormControl>
               </Grid>
 
-              {/* Confirm Password */}
               <Grid size={{ xs: 12 }}>
                 <FormControl
                   fullWidth
@@ -278,7 +328,10 @@ const Register = () => {
                     formData.password !== formData.password_confirm
                   }
                 >
-                  <InputLabel>Confirm Password</InputLabel>
+                  <InputLabel sx={{    "&.Mui-focused": {
+      color: "#ff939a",
+    },
+}}>Confirm Password</InputLabel>
                   <OutlinedInput
                     label="Confirm Password"
                     type="password"
@@ -286,15 +339,17 @@ const Register = () => {
                     value={formData.password_confirm}
                     onChange={handleChange}
                     sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: 2,
-                        transition: "all 0.3s ease",
-                        "&:hover fieldset": {
-                          borderColor: "#667eea",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "#667eea",
-                        },
+                      borderRadius: 2,
+                      "& fieldset": {
+                        borderColor: "#ff939a",
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                      },
+
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff939a",
+                        borderWidth: "2px",
                       },
                     }}
                   />
@@ -314,20 +369,8 @@ const Register = () => {
                   py: 1.2,
                   fontSize: "1rem",
                   fontWeight: 600,
-                  background:
-                    "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                  background: "#A53860",
                   borderRadius: 2,
-                  textTransform: "none",
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    background:
-                      "linear-gradient(135deg, #5568d3 0%, #6a3d91 100%)",
-                    transform: "translateY(-2px)",
-                    boxShadow: "0 8px 20px rgba(102, 126, 234, 0.4)",
-                  },
-                  "&:disabled": {
-                    opacity: 0.7,
-                  },
                 }}
                 disabled={loading}
               >
@@ -340,7 +383,7 @@ const Register = () => {
                   to="/login"
                   style={{
                     textDecoration: "none",
-                    color: "#667eea",
+                    color: "#DA627D",
                     fontWeight: 600,
                   }}
                 >

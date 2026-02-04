@@ -49,6 +49,7 @@ const EventDetail = () => {
       const response = await eventAPI.getEventDetail(id);
       setEvent(response.data);
       setIsRegistered(response.data.is_registered || false);
+
       await fetchSessions();
     } catch (error) {
       console.error("Failed to fetch event:", error);
@@ -86,6 +87,7 @@ const EventDetail = () => {
       setRegistering(true);
       await registrationAPI.registerForEvent(id);
       setIsRegistered(true);
+
       alert("Successfully registered for the event!");
       fetchEventDetail();
     } catch (error) {
@@ -219,7 +221,7 @@ const EventDetail = () => {
               </Typography>
             </Box>
 
-            {event.organizer && isAuthenticated && (
+            {user?.id === event.organizer?.id  && isAuthenticated && (
               <Box sx={{ display: "flex", gap: 1 }}>
                 <Button
                   variant="outlined"
@@ -242,9 +244,7 @@ const EventDetail = () => {
           </Box>
 
           <Grid container spacing={4}>
-            {/* Event Info */}
             <Grid size={{ xs: 12, md: 8 }}>
-              {/* Date & Time */}
               <Box
                 sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}
               >
@@ -261,7 +261,6 @@ const EventDetail = () => {
                 </Typography>
               </Box>
 
-              {/* Location */}
               <Box
                 sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3 }}
               >
@@ -273,7 +272,6 @@ const EventDetail = () => {
                 </Typography>
               </Box>
 
-              {/* Description */}
               <Typography
                 variant="h5"
                 fontWeight="bold"
@@ -286,7 +284,6 @@ const EventDetail = () => {
                 {event.description}
               </Typography>
 
-              {/* Tags */}
               {event.tags && event.tags.length > 0 && (
                 <Box sx={{ mt: 3 }}>
                   <Typography variant="h6" gutterBottom>
@@ -300,7 +297,6 @@ const EventDetail = () => {
                 </Box>
               )}
 
-              {/* Sessions Section */}
               <Box sx={{ mt: 6 }}>
                 <Box
                   sx={{
@@ -373,10 +369,8 @@ const EventDetail = () => {
               </Box>
             </Grid>
 
-            {/* Sidebar */}
             <Grid size={{ xs: 12, md: 4 }}>
               <Paper elevation={2} sx={{ p: 3, position: "sticky", top: 20 }}>
-                {/* Organizer */}
                 {event.organizer && (
                   <Box sx={{ mb: 3 }}>
                     <Typography variant="h6" gutterBottom color="#DA627D">
@@ -402,6 +396,7 @@ const EventDetail = () => {
                     <Person color="#1a3d14" />
                     <Typography variant="body1" color="#14213d">
                       {event.total_registrations} / {event.capacity} registered
+
                     </Typography>
                   </Box>
                   {event.is_full && (
@@ -414,7 +409,6 @@ const EventDetail = () => {
                   )}
                 </Box>
 
-                {/* Register Button */}
                 {isAuthenticated && !event.is_full && (
                   <>
                     {!isRegistered ? (
@@ -431,13 +425,13 @@ const EventDetail = () => {
                       >
                         {registering ? "Registering..." : "Register Now"}
                       </Button>
+
                     ) : (
                       <Box sx={{ display: "flex", gap: 1 }}>
                         <Button
                           fullWidth
                           sx={{backgroundColor:"#DA627D"}}
                           variant="contained"
-                          color="success"
                           disabled
                         >
                           ✓ Registered

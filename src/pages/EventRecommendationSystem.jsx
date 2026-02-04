@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import {
   AutoAwesome,
   TrendingUp,
@@ -21,23 +20,22 @@ import {
   Stack,
   Paper,
 } from "@mui/material";
-import { eventAPI } from "../services/api";
+import { eventAPI ,registrationAPI} from "../services/api";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const EventRecommendationSystem = () => {
   const { user } = useAuth();
+  const navigate=useNavigate()
   const [userInterests, setUserInterests] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [recommendations, setRecommendations] = useState([]);
   const [availableEvents, setAvailableEvents] = useState([]);
   const [lastRequestTime, setLastRequestTime] = useState(0);
+  
 
-  const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-
-  const GEMINI_API_URL =
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent";
-  // Fetch user interests and available events on component mount
+ 
   useEffect(() => {
     // Set user interests from profile if available
     if (user?.interests) {
@@ -48,7 +46,9 @@ const EventRecommendationSystem = () => {
     const fetchEvents = async () => {
       try {
         const response = await eventAPI.getAllEvents();
-        setAvailableEvents(response.data);
+        const futureEvents = response.data.filter((event) => !event.is_past);
+
+        setAvailableEvents(futureEvents);
       } catch (err) {
         console.error("Failed to fetch events:", err);
         setError("Failed to load events. Please try again later.");
@@ -81,81 +81,14 @@ const EventRecommendationSystem = () => {
     setError("");
 
     try {
-      const prompt = `You are an intelligent event recommendation system. Based on the user's interests, recommend the most relevant events from the list and explain why they match.
-        
-User Interests: "${userInterests}"
+     
+      const response=await eventAPI.getEventRecommendations(userInterests,availableEvents);
 
-Available Events:
-${availableEvents
-  .map(
-    (event, index) =>
-      `${index + 1}. ${event.title}
-Category: ${event.category || "General"}
-Description: ${event.description}
-Date: ${event.date}
-Location: ${event.location}
-`,
-  )
-  .join("\n")}
+      const parsedResponse=response.data;
 
-Please respond in JSON format with an array of recommendations. For each recommendation include:
-- eventId (the index number from the list, starting from 1)
-- matchScore (1-100, how well it matches user interests)
-- reason (a brief explanation of why this event matches)
+  
+    
 
-Return top 3 recommendations sorted by matchScore in descending order.
-
-Example format:
-{
-  "recommendations": [
-    {
-      "eventId": 1,
-      "matchScore": 95,
-      "reason": "This event directly aligns with your interest in..."
-    }
-  ]
-}
-
-Return ONLY the JSON response without any additional text.`;
-
-      const payload = {
-        contents: [
-          {
-            parts: [
-              {
-                text: prompt,
-              },
-            ],
-          },
-        ],
-      };
-
-      const response = await axios.post(
-        `${GEMINI_API_URL}?key=${GEMINI_API_KEY}`,
-        payload,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      );
-
-      console.log("Gemini API response:", response);
-
-      const responseText = response.data.candidates[0].content.parts[0].text;
-      console.log("Gemini API response text:", responseText);
-
-      // Parse JSON from response
-      const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) {
-        setError("Failed to parse recommendations. Please try again.");
-        setLoading(false);
-        return;
-      }
-
-      const parsedResponse = JSON.parse(jsonMatch[0]);
-
-      // Map recommendations to include full event details
       const enrichedRecommendations = parsedResponse.recommendations.map(
         (rec) => {
           const eventIndex = rec.eventId - 1;
@@ -190,6 +123,11 @@ Return ONLY the JSON response without any additional text.`;
       setLoading(false);
     }
   };
+
+ 
+  
+  
+  
 
   return (
     <Box sx={{ minHeight: "100vh", py: 6, px: 2 }}>
@@ -347,7 +285,6 @@ Return ONLY the JSON response without any additional text.`;
                       </Box>
                     </Box>
 
-                    {/* AI Reason */}
                     <Paper
                       sx={{
                         bgcolor: "#F9DBBD",
@@ -376,12 +313,10 @@ Return ONLY the JSON response without any additional text.`;
                       </Typography>
                     </Paper>
 
-                    {/* Event Description */}
                     <Typography variant="body2" sx={{ color: "#666", mb: 3 }}>
                       {event.description}
                     </Typography>
 
-                    {/* Event Details */}
                     <Box
                       sx={{ display: "flex", flexWrap: "wrap", gap: 3, mb: 3 }}
                     >
@@ -430,21 +365,17 @@ Return ONLY the JSON response without any additional text.`;
                       </Box>
                     </Box>
 
-                    {/* Register Button */}
-                    <Button
-                      fullWidth
-                      variant="contained"
-                      sx={{
-                        backgroundColor: "#A53860",
-                        color: "white",
-                        py: 1,
-                        fontWeight: "bold",
-
-                      }}
-                    >
-                      Register for Event
-                    </Button>
-                  </CardContent>
+                      <Button
+                    fullWidth
+                    variant="contained"
+                    onClick={() => navigate(`/events/${availableEvents[idx]?.id}`)}
+                    sx={{backgroundColor:"#A53860"}}
+                  >
+                    View Details
+                  </Button>
+                    
+                                      
+                            </CardContent>
                 </Card>
               ))}
             </Stack>

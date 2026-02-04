@@ -115,8 +115,7 @@ const EditProfile = () => {
             variant="contained"
             onClick={() => navigate("/profile")}
             sx={{
-              backgroundColor: "#1976d2",
-              "&:hover": { backgroundColor: "#1565c0" },
+              backgroundColor: "#A53860",
             }}
           >
             Go Back to Profile
@@ -142,7 +141,6 @@ const EditProfile = () => {
         </Typography>
       </Box>
 
-      {/* Form */}
       <Paper sx={{ p: 4 }}>
         {error && (
           <Alert severity="error" sx={{ mb: 3, borderRadius: 2 }}>

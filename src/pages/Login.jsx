@@ -60,7 +60,7 @@ const Login = () => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        backgroundColor: "#450920",
+        backgroundColor: "#DA627D",
       }}
     >
       <Card
@@ -118,7 +118,7 @@ const Login = () => {
 
         <Typography align="center" sx={{ mt: 1 }}>
           Don’t have an account?{" "}
-          <Link to="/register" style={{ textDecoration: "none" }}>
+          <Link to="/register" style={{ color:"#DA627D" }}>
             Sign up
           </Link>
         </Typography>
